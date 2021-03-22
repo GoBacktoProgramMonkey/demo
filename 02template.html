@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="`en`">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,19 +12,40 @@
 <body>
     <div class="container"></div>
 </body>
-
-<script type="text/html" id="tmp">
-    <h1>姓名：{{name}}</h1>
-    <h2>年龄:{{age}}</h2>
+<script type="text/html" id="tem">
+    <h1>{{name}}</h1>
+    <h1>{{age}}</h1>
+    <h1>
+        {{if flag ==2}}
+            我是2
+        {{else if flag!=2}}
+            我不是2
+        {{/if}}
+    </h1>
+    <ul>
+        {{each hobby}}
+        <li>循环索引{{$index}},循环项{{$value}}</li>
+        {{/each}}
+    </ul>
+    <h3>
+        {{date | dateFormat}}
+    </h3>
 </script>
 <script>
-    var data = {
-        name:"zs",
-        age:"18"
+    template.defaults.imports.dateFormat = function (date) {
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        var d = date.getDate();
+        return y+"--"+m+"--"+d;
     }
-    var htmlStr=  template("tmp",data);
+    var data = {
+        name:"高不凡",
+        age:"26",
+        flag:3,
+        hobby:["吃饭","睡觉","打啵"],
+        date:new Date()
+    }
+    var htmlStr = template("tem",data);
     $(".container").html(htmlStr)
-
-
 </script>
 </html>
