@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="user-d">
+
+    </div>
+</body>
+<script type="text/html" id="tmp">
+    <p>名字:{{name}}</p>
+    <p>年龄:{{age}}</p>
+    <p>性别:{{gender}}</p>
+</script>
+<script>
+    var data = {
+        name:"张三",
+        age:12,
+        gender:"男"
+    }
+    function template(id,data) {
+        var eleStr = document.getElementById(id).innerHTML;
+        var pattern = /{{\s*([a-zA-Z]+)\s*}}/;
+        var patternResult = null;
+        while (patternResult = pattern.exec(eleStr)){
+            eleStr = eleStr.replace(patternResult[0],data[patternResult[1]]);
+            console.log(eleStr)
+        }
+
+        return eleStr;
+    }
+    var t = template("tmp",data);
+    document.getElementById("user-d").innerHTML = t;
+</script>
+</html>
