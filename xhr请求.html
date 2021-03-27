@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // var xhr =new XMLHttpRequest();
+    // xhr.open("POST","http://www.liulongbin.top:3006/api/addbook");
+    // xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    // xhr.send("bookname=水浒传1111&author=施耐庵&publisher=天津图书出版社");
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState===4&&xhr.status===200){
+    //         console.log(xhr.responseText)
+    //     }
+    // }
+
+    // var  xhr =new XMLHttpRequest();
+    // xhr.open("GET","http://www.liulongbin.top:3006/api/getbooks");
+    // xhr.send();
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.status === 200 && xhr.readyState===4){
+    //         console.log(xhr.responseText)
+    //     }
+    // }
+
+    var obj = {
+        name:"zs",
+        age:32
+    }
+    var str = JSON.stringify(obj);
+    obj1 = JSON.parse(str);
+    console.log(obj1)
+    console.log(typeof obj1);
+
+</script>
+
+</body>
+</html>
