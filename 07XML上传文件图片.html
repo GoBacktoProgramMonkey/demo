@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="f-i">
+<br>
+<button id="btn">上传图片</button>
+<br>
+<img src="" alt="" id="heade-I">
+</body>
+<script>
+    document.querySelector("#btn").addEventListener("click",function () {
+        var files = document.querySelector("#f-i").files;
+        if (files.length<=0){
+            return alert("没选东西啊");
+        }
+        var fd = new FormData();
+        fd.append("avatar",files[0]);
+        var xml = new XMLHttpRequest();
+        xml.open("POST","http://www.liulongbin.top:3006/api/upload/avatar");
+        xml.send(fd);
+        xml.onreadystatechange = function () {
+            if (xml.readyState===4&&xml.status===200){
+                console.log(xml.responseText);
+                var obj  = JSON.parse(xml.responseText);
+                if (obj.status === 200){
+                    document.querySelector("#heade-I").src= "http://www.liulongbin.top:3006"+obj.url;
+                }else {
+                    alert(obj.message);
+                }
+            }
+        }
+    })
+</script>
+</html>

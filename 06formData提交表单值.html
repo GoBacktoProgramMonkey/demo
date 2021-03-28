@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="fomr1">
+    <input type="text" name="uname" autocomplete="off"><br>
+    <input type="password" name="upwd"> <br>
+    <button type="submit">提交</button>
+</form>
+</body>
+<script>
+    var fm = document.querySelector("#fomr1");
+    fm.addEventListener("submit",function (e) {
+        e.preventDefault();
+        var xml = new XMLHttpRequest();
+        var formData = new FormData(fm);
+        xml.open("POST","http://www.liulongbin.top:3006/api/formdata");
+        xml.send(formData);
+        xml.onreadystatechange=function () {
+            if (xml.status===200&&xml.readyState===4){
+                console.log(xml.responseText);
+                fm.reset();
+            }
+        }
+    })
+</script>
+</html>

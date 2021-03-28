@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var xml = new XMLHttpRequest();
+    xml.timeout = 3000;
+    xml.ontimeout = function () {
+        console.log("尼玛超时了");
+    }
+    var fromData = new FormData();
+    fromData.append("uname","zs");
+    fromData.append("upwd","222");
+    xml.open("POST","http://www.liulongbin.top:3006/api/formdata");
+    xml.send(fromData);
+    xml.onreadystatechange = function ( ) {
+        if (xml.readyState === 4 && xml.status===200){
+            console.log(xml.responseText);
+        }
+    }
+</script>
+</html>
